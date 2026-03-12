@@ -1,28 +1,55 @@
-# Shell-and-Tube Heat Exchanger Design & Performance Analysis
+# Heat Exchanger Performance Simulation
 
-This project develops a MATLAB-based tool to analyze the thermal performance of a **shell-and-tube heat exchanger**.
+This project models the performance of a counter-flow heat exchanger using MATLAB.  
+It implements both the **NTU–Effectiveness method** and the **Log Mean Temperature Difference (LMTD) method** to analyze heat transfer and predict outlet temperatures of the hot and cold streams.
 
-## Objective
-To evaluate exchanger performance using classical heat transfer design methods.
+## Overview
 
-## Features
-- LMTD method implementation
-- Effectiveness–NTU method comparison
-- Heat duty and outlet temperature calculation
-- Parametric analysis of flow rate and fouling factor
+The simulation evaluates heat exchanger behavior using fundamental heat transfer relations.  
+Given fluid flow rates, heat capacities, inlet temperatures, and exchanger parameters, the model calculates:
+
+- heat transfer rate
+- outlet temperatures of both fluids
+- temperature distribution along the exchanger
+- performance trends under different operating conditions
+
+Both classical design approaches used in heat exchanger analysis — **NTU–Effectiveness** and **LMTD** — are implemented and compared.
+
+## What the Model Includes
+
+- Heat capacity rate calculation for hot and cold streams  
+- NTU (Number of Transfer Units) calculation  
+- Heat exchanger effectiveness estimation  
+- Heat transfer rate prediction  
+- Outlet temperature calculation for both fluids  
+- Temperature profile along the heat exchanger length  
+- LMTD-based heat transfer calculation  
+- Parametric analysis showing the effect of hot fluid flow rate on heat transfer  
+
+## Results
+
+### Temperature Profile Along Heat Exchanger
+
+![Temperature Profile](plots/temp_profile.png)
+
+### Effect of Hot Fluid Flow Rate on Heat Transfer
+
+![Flow Rate vs Heat Transfer](plots/flowrate_Vs_heatT.png)
+
+## Key Insight
+
+The simulation demonstrates important heat exchanger behavior:
+
+- Increasing the **hot fluid flow rate** increases the heat capacity rate and therefore the **heat transfer rate**.
+- NTU and LMTD methods produce consistent results when the exchanger parameters are correctly defined.
+- The temperature profile illustrates the typical behavior of a **counter-flow heat exchanger**, where the hot fluid cools while the cold fluid heats up along the exchanger length.
 
 ## Tools Used
-- MATLAB
-- Heat Transfer & Transport Phenomena concepts
 
-## Repository Structure
+MATLAB • Heat Transfer • Process Modeling
 
-heat-exchanger-performance-simulator  
-│  
-├── matlab/        → MATLAB scripts  
-├── plots/         → Simulation plots  
-├── report/        → Project summary  
-└── README.md  
+## Author
 
-## Status
-Work in progress.
+Rohit Guleria  
+B.Tech Chemical Engineering  
+IIT (ISM) Dhanbad

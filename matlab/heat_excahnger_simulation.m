@@ -126,3 +126,32 @@ xlabel('Overall Heat Transfer Coefficient (W/m^2K)')
 ylabel('Heat Transfer Rate (W)')
 title('Effect of Heat Transfer Coefficient on Heat Transfer')
 grid on
+
+
+
+%% Effect of fouling factor on heat transfer
+
+Rf_values = linspace(0,0.001,20);
+Q_fouling = zeros(size(Rf_values));
+
+for i = 1:length(Rf_values)
+
+    Rf = Rf_values(i);
+
+    U_f = 1/(1/U + Rf);
+
+    NTU_test = (U_f*A)/C_min;
+
+    eff_test = (1 - exp(-NTU_test*(1-Cr))) / (1 - Cr*exp(-NTU_test*(1-Cr)));
+
+    Q_fouling(i) = eff_test * C_min * (Th_in - Tc_in);
+
+end
+
+figure
+plot(Rf_values,Q_fouling,'LineWidth',2)
+
+xlabel('Fouling Resistance (m^2K/W)')
+ylabel('Heat Transfer Rate (W)')
+title('Effect of Fouling Factor on Heat Transfer')
+grid on

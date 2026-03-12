@@ -55,3 +55,16 @@ title('Temperature Profile Along Heat Exchanger')
 
 legend('Hot Fluid','Cold Fluid')
 grid on
+
+
+%% LMTD Method
+
+deltaT1=Th_in - Tc_out;
+deltaT2=Th_out - Tc_in;
+
+LMTD=(deltaT1 - deltaT2) / log(deltaT1/deltaT2);
+
+Q_LMTD=U*A*LMTD;
+
+disp(['LMTD (C): ', num2str(LMTD)])
+disp(['Heat Transfer Rate using LMTD (W): ', num2str(Q_LMTD)])

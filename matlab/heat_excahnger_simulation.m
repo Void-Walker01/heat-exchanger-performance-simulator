@@ -68,3 +68,34 @@ Q_LMTD=U*A*LMTD;
 
 disp(['LMTD (C): ', num2str(LMTD)])
 disp(['Heat Transfer Rate using LMTD (W): ', num2str(Q_LMTD)])
+
+
+%% Effect of hot fluid flow rate on heat transfer
+
+m_hot_values = linspace(0.5,3,20);
+Q_values = zeros(size(m_hot_values));
+
+for i = 1:length(m_hot_values)
+    m_hot_test = m_hot_values(i);
+
+    C_hot_test = m_hot_test * Cp_hot;
+    C_min_test = min(C_hot_test, C_cold);
+    C_max_test = max(C_hot_test, C_cold);
+
+    Cr_test = C_min_test / C_max_test;
+
+    NTU_test = (U*A)/C_min_test;
+
+    effectiveness_test = (1 - exp(-NTU_test*(1-Cr_test))) / (1 - Cr_test*exp(-NTU_test*(1-Cr_test)));
+
+    Q_values(i) = effectiveness_test * C_min_test * (Th_in - Tc_in);
+end
+
+figure
+plot(m_hot_values,Q_values,'o-','LineWidth',2)
+
+xlabel('Hot Fluid Mass Flow Rate (kg/s)')
+ylabel('Heat Transfer Rate (W)')
+title('Effect of Hot Fluid Flow Rate on Heat Transfer')
+
+grid on

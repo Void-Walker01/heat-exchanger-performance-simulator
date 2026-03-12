@@ -99,3 +99,30 @@ ylabel('Heat Transfer Rate (W)')
 title('Effect of Hot Fluid Flow Rate on Heat Transfer')
 
 grid on
+
+
+
+%% Effect of heat transfer coefficient on heat transfer
+
+U_values = linspace(200,800,20);
+Q_U = zeros(size(U_values));
+
+for i = 1:length(U_values)
+
+    U_test = U_values(i);
+
+    NTU_test = (U_test*A)/C_min;
+
+    eff_test = (1 - exp(-NTU_test*(1-Cr))) / (1 - Cr*exp(-NTU_test*(1-Cr)));
+
+    Q_U(i) = eff_test * C_min * (Th_in - Tc_in);
+
+end
+
+figure
+plot(U_values,Q_U,'LineWidth',2)
+
+xlabel('Overall Heat Transfer Coefficient (W/m^2K)')
+ylabel('Heat Transfer Rate (W)')
+title('Effect of Heat Transfer Coefficient on Heat Transfer')
+grid on
